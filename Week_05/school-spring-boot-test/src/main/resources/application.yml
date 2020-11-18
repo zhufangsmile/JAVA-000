@@ -1,0 +1,6 @@
+server:
+  port: 8080
+
+student:
+  id: 123
+  name: zhufang
