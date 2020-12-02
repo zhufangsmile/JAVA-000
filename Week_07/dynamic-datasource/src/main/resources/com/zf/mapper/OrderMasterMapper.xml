@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zf.mapper.OrderMasterMapper">
+    <insert id="insert" parameterType="com.zf.model.OrderMaster">
+        insert into tbl_order_master (
+        <if test="orderKey != null">orderKey,</if>
+        <if test="goodsAmount != null">goodsAmount,</if>
+        <if test="userID != null">userID,</if>
+        <if test="shopID != null">shopID,</if>
+        <if test="deliveryAdress != null">deliveryAdress,</if>
+        <if test="deliveryName != null">deliveryName,</if>
+        <if test="deliveryTel != null">deliveryTel,</if>
+        <if test="expressAmount != null">expressAmount,</if>
+        <if test="orderTotalAmount != null">orderTotalAmount,</if>
+        creatTime,actionTime
+        ) values (
+        <if test="orderKey != null">orderKey = #{orderKey},</if>
+        <if test="goodsAmount != null">goodsAmount = #{goodsAmount},</if>
+        <if test="userID != null">userID = #{userID},</if>
+        <if test="shopID != null">shopID = #{shopID},</if>
+        <if test="deliveryAdress != null">deliveryAdress = #{deliveryAdress},</if>
+        <if test="deliveryName != null">deliveryName = #{deliveryName},</if>
+        <if test="deliveryTel != null">deliveryTel = #{deliveryTel},</if>
+        <if test="expressAmount != null">expressAmount = #{expressAmount},</if>
+        <if test="orderTotalAmount != null">orderTotalAmount = #{orderTotalAmount},</if>
+        creatTime,actionTime
+        )
+    </insert>
+
+    <select id="queryList" parameterType="java.util.Map" resultType="com.zf.model.OrderMaster">
+        select <include refid="queryField"/>
+        from tbl_order_master
+    </select>
+
+    <sql id="queryField">
+        orderID, orderKey, goodsAmount, userID, shopID, deliveryAdress, deliveryName, deliveryTel, expressAmount, orderTotalAmount, creatTime, actionTime
+    </sql>
+</mapper>

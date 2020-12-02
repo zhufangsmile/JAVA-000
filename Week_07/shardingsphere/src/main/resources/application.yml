@@ -1,0 +1,33 @@
+spring:
+  shardingsphere:
+    enabled: true
+    props:
+      sql:
+        show:
+          true
+    datasource:
+      names: master,slave
+      common:
+        driver-class-name: com.mysql.jdbc.Driver
+      master:
+        type: com.zaxxer.hikari.HikariDataSource
+        jdbc-url: jdbc:mysql://localhost:3306/db_order?serverTimezone=Asia/Shanghai&useSSL=false
+        username: root
+        password:
+      slave:
+        type: com.zaxxer.hikari.HikariDataSource
+        jdbc-url: jdbc:mysql://localhost:3307/db_order?serverTimezone=Asia/Shanghai&useSSL=false
+        username: root
+        password:
+    rules:
+      replica-query:
+        dataSources:
+          pr_ds:
+            primary-data-source-name: master
+            replica-data-source-names: slave
+            load-balancer-name: round-robin
+        load-balancers:
+          round-robin:
+            type: ROUND_ROBIN
+            props:
+              workid: 123

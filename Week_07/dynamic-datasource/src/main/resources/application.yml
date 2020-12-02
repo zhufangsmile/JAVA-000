@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    druid:
+      master:
+        url: jdbc:mysql://localhost:3306/db_order?serverTimezone=Asia/Shanghai&useSSL=false
+        username: root
+        password:
+        initialSize: 10
+        maxActive: 100
+        minIdle: 2
+        validationQuery: SELECT 1
+        testOnBorrow: true
+        testWhileIdle: true
+      slave:
+        url: jdbc:mysql://localhost:3307/db_order?serverTimezone=Asia/Shanghai&useSSL=false
+        username: root
+        password:
+        initialSize: 10
+        maxActive: 100
+        minIdle: 2
+        validationQuery: SELECT 1
+        testOnBorrow: true
+        testWhileIdle: true
